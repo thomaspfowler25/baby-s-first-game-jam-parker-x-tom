@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 269103098}
   - component: {fileID: 269103097}
   - component: {fileID: 269103096}
+  - component: {fileID: 269103103}
   m_Layer: 0
   m_Name: Robot_P1
   m_TagString: Untagged
@@ -322,7 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294edec2be7541b4d81d46d056ac3dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotHealth
-  maxHeartsOverride: -1
 --- !u!114 &269103097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,6 +499,27 @@ Transform:
   - {fileID: 1403917810}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269103103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269103095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cf2afe59dd454cbf610da6bce52d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotSlots
+  slotMarkerPrefab: {fileID: 6926227395528081832, guid: 8288b77a39111694baf42d0549de5230, type: 3}
+  bottomY: -0.6
+  headY: 0.6
+  sideX: 0.6
+  bottomSpacing: 0.35
+  sideSpacing: 0.35
+  headSpacing: 0.35
+  markerScale: 0.16
+  regenerateNow: 0
 --- !u!1 &303502894
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +936,59 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &876037173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 876037175}
+  - component: {fileID: 876037174}
+  m_Layer: 0
+  m_Name: FightSceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &876037174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876037173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430254bf6166ff94cae76fbaae873542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FightSceneLoader
+  player1Slots: {fileID: 269103103}
+  player2Slots: {fileID: 1547219077}
+  attachmentSpawner: {fileID: 1319188702}
+  player1Config: {fileID: 269103098}
+  player2Config: {fileID: 1547219072}
+  player1Controller: {fileID: 269103097}
+  player2Controller: {fileID: 1547219071}
+  player1Health: {fileID: 269103096}
+  player2Health: {fileID: 1547219070}
+--- !u!4 &876037175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876037173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 169.15585, y: 104.74834, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041097748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1402,53 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1319188701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1319188703}
+  - component: {fileID: 1319188702}
+  m_Layer: 0
+  m_Name: AttachmentSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1319188702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319188701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db533f04917afe844a22822d6da002c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttachmentSpawner
+  attachmentVisualPrefab: {fileID: 5524441680148607258, guid: 61b2267d592aaa443aa207b0714c57ed, type: 3}
+  p1Slots: {fileID: 269103103}
+  p2Slots: {fileID: 1547219077}
+--- !u!4 &1319188703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319188701}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 169.15585, y: 104.74834, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1403917809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1638,7 @@ GameObject:
   - component: {fileID: 1547219072}
   - component: {fileID: 1547219071}
   - component: {fileID: 1547219070}
+  - component: {fileID: 1547219077}
   m_Layer: 0
   m_Name: Robot_P2
   m_TagString: Untagged
@@ -1536,7 +1658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294edec2be7541b4d81d46d056ac3dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RobotHealth
-  maxHeartsOverride: -1
 --- !u!114 &1547219071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,6 +1834,27 @@ Transform:
   - {fileID: 1634792913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1547219077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547219069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599cf2afe59dd454cbf610da6bce52d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotSlots
+  slotMarkerPrefab: {fileID: 6926227395528081832, guid: 8288b77a39111694baf42d0549de5230, type: 3}
+  bottomY: -0.6
+  headY: 0.6
+  sideX: 0.6
+  bottomSpacing: 0.35
+  sideSpacing: 0.35
+  headSpacing: 0.35
+  markerScale: 0.16
+  regenerateNow: 0
 --- !u!1 &1557779091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +2111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 120}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1656141840
@@ -2551,3 +2693,5 @@ SceneRoots:
   - {fileID: 303502898}
   - {fileID: 1557779094}
   - {fileID: 1709416032}
+  - {fileID: 876037175}
+  - {fileID: 1319188703}

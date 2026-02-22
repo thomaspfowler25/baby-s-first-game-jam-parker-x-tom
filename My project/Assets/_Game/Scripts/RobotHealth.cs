@@ -10,19 +10,27 @@ public class RobotHealth : MonoBehaviour
     public event Action<RobotHealth> OnDied;
     public event Action<RobotHealth> OnHealthChanged;
 
-    [Header("Optional Override (leave at -1)")]
-    [Tooltip("Set to > 0 to override max hearts (debug/testing).")]
-    public float maxHeartsOverride = -1f;
-
     private RobotConfig _config;
 
     private void Awake()
     {
         _config = GetComponent<RobotConfig>();
+        ApplyBodyType(_config.bodyType, resetToFull: true);
+    }
 
-        var stats = RobotBodyStatsDB.Get(_config.bodyType);
-        MaxHearts = (maxHeartsOverride > 0f) ? maxHeartsOverride : stats.maxHearts;
-        CurrentHearts = MaxHearts;
+    /// <summary>
+    /// Applies a body type's max hearts and optionally refills current hearts.
+    /// </summary>
+    public void ApplyBodyType(RobotBodyType bodyType, bool resetToFull)
+    {
+        MaxHearts = RobotBodyStatsDB.Get(bodyType).maxHearts;
+
+        if (resetToFull)
+            CurrentHearts = MaxHearts;
+        else
+            CurrentHearts = Mathf.Clamp(CurrentHearts, 0f, MaxHearts);
+
+        OnHealthChanged?.Invoke(this);
     }
 
     public void ResetToFull()
@@ -42,8 +50,6 @@ public class RobotHealth : MonoBehaviour
         OnHealthChanged?.Invoke(this);
 
         if (CurrentHearts <= 0f)
-        {
             OnDied?.Invoke(this);
-        }
     }
 }
