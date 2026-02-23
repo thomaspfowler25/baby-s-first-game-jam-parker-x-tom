@@ -9,6 +9,10 @@ public class RobotController : MonoBehaviour
     public PlayerId PlayerId => _config.playerId;
     public RobotBodyType BodyType => _config.bodyType;
 
+    [Header("Base Movement (temporary)")]
+    [Tooltip("Turn OFF to make movement come only from mobility attachments (thrusters/wheels/etc).")]
+    public bool enableBaseMovement = true;
+
     [Header("Movement Multipliers (tweakable)")]
     public float accelerationMultiplier = 1f;
     public float maxSpeedMultiplier = 1f;
@@ -58,12 +62,17 @@ public class RobotController : MonoBehaviour
     {
         if (!InputsEnabled) return;
 
-        if (_upInput)
-            _rb.AddForce((Vector2)transform.up * _accel, ForceMode2D.Force);
+        // Optional base movement (from early prototype)
+        if (enableBaseMovement)
+        {
+            if (_upInput)
+                _rb.AddForce((Vector2)transform.up * _accel, ForceMode2D.Force);
 
-        if (Mathf.Abs(_hInput) > 0.01f)
-            _rb.AddForce((Vector2)transform.right * (_hInput * _accel), ForceMode2D.Force);
+            if (Mathf.Abs(_hInput) > 0.01f)
+                _rb.AddForce((Vector2)transform.right * (_hInput * _accel), ForceMode2D.Force);
+        }
 
+        // Clamp speed so thrusters/wheels don't accelerate forever
         float speed = _rb.linearVelocity.magnitude;
         if (speed > _maxSpeed)
             _rb.linearVelocity = _rb.linearVelocity.normalized * _maxSpeed;
@@ -87,9 +96,6 @@ public class RobotController : MonoBehaviour
         _rb.angularVelocity = 0f;
     }
 
-    /// <summary>
-    /// Call after changing RobotConfig.bodyType to apply mass/drag/speeds.
-    /// </summary>
     public void ApplyCurrentBodyStats()
     {
         var stats = RobotBodyStatsDB.Get(_config.bodyType);

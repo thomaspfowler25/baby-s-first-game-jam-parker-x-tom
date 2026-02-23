@@ -19,13 +19,19 @@ public class AssemblyUI_Scene : MonoBehaviour
         Refresh();
     }
 
-    public void ChooseP1_Tank()   { _p1Choice = RobotBodyType.Tank;   Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
-    public void ChooseP1_Knight() { _p1Choice = RobotBodyType.Knight; Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
-    public void ChooseP1_Ninja()  { _p1Choice = RobotBodyType.Ninja;  Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
+    public void ChooseP1_Tank()   { _p1Choice = RobotBodyType.Tank;   EnsureGameSettingsExists();
+GameSettings.Instance.p1BodyType = _p1Choice.Value; Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
+    public void ChooseP1_Knight() { _p1Choice = RobotBodyType.Knight; EnsureGameSettingsExists();
+GameSettings.Instance.p1BodyType = _p1Choice.Value; Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
+    public void ChooseP1_Ninja()  { _p1Choice = RobotBodyType.Ninja;  EnsureGameSettingsExists();
+GameSettings.Instance.p1BodyType = _p1Choice.Value; Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
 
-    public void ChooseP2_Tank()   { _p2Choice = RobotBodyType.Tank;   Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
-    public void ChooseP2_Knight() { _p2Choice = RobotBodyType.Knight; Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
-    public void ChooseP2_Ninja()  { _p2Choice = RobotBodyType.Ninja;  Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
+    public void ChooseP2_Tank()   { _p2Choice = RobotBodyType.Tank; EnsureGameSettingsExists();
+GameSettings.Instance.p2BodyType = _p2Choice.Value;  Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
+    public void ChooseP2_Knight() { _p2Choice = RobotBodyType.Knight; EnsureGameSettingsExists();
+GameSettings.Instance.p2BodyType = _p2Choice.Value; Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
+    public void ChooseP2_Ninja()  { _p2Choice = RobotBodyType.Ninja; EnsureGameSettingsExists();
+GameSettings.Instance.p2BodyType = _p2Choice.Value; Refresh(); if (attachmentsUI != null) attachmentsUI.RebuildAll(); }
 
     private void Refresh()
     {
@@ -39,6 +45,13 @@ public class AssemblyUI_Scene : MonoBehaviour
         if (startMatchButton != null)
             startMatchButton.interactable = ready;
     }
+
+    private void EnsureGameSettingsExists()
+{
+    if (GameSettings.Instance != null) return;
+    var go = new GameObject("GameSettings");
+    go.AddComponent<GameSettings>();
+}
 
     public void StartMatch()
     {
