@@ -304,6 +304,8 @@ GameObject:
   - component: {fileID: 269103097}
   - component: {fileID: 269103096}
   - component: {fileID: 269103103}
+  - component: {fileID: 269103104}
+  - component: {fileID: 269103105}
   m_Layer: 0
   m_Name: Robot_P1
   m_TagString: Untagged
@@ -520,6 +522,40 @@ MonoBehaviour:
   headSpacing: 0.35
   markerScale: 0.16
   regenerateNow: 0
+--- !u!114 &269103104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269103095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a5d2c66370a3c48aa8d267244237bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotBodyVisual
+  tankSprite: {fileID: 21300000, guid: ec6b8fdfc5cbed148b3094c8544f1996, type: 3}
+  knightSprite: {fileID: 21300000, guid: c058514a19ae5b044ac506f30fb11da1, type: 3}
+  ninjaSprite: {fileID: 21300000, guid: f7d7d1d3b12ee59409296986815a8650, type: 3}
+  tankScale: {x: 1, y: 1, z: 1}
+  knightScale: {x: 1, y: 1, z: 1}
+  ninjaScale: {x: 1, y: 1, z: 1}
+--- !u!114 &269103105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269103095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17b4b57787a92e4392d554e6638582e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MatchVisualToCollider2D
+  visual: {fileID: 0}
+  targetCollider: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  fit: 0.95
 --- !u!1 &303502894
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +1001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430254bf6166ff94cae76fbaae873542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FightSceneLoader
+  player1Visual: {fileID: 269103104}
+  player2Visual: {fileID: 1547219078}
   player1Slots: {fileID: 269103103}
   player2Slots: {fileID: 1547219077}
   attachmentSpawner: {fileID: 1319188702}
@@ -1502,6 +1540,7 @@ GameObject:
   - component: {fileID: 1547219071}
   - component: {fileID: 1547219070}
   - component: {fileID: 1547219077}
+  - component: {fileID: 1547219078}
   m_Layer: 0
   m_Name: Robot_P2
   m_TagString: Untagged
@@ -1718,6 +1757,24 @@ MonoBehaviour:
   headSpacing: 0.35
   markerScale: 0.16
   regenerateNow: 0
+--- !u!114 &1547219078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547219069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a5d2c66370a3c48aa8d267244237bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RobotBodyVisual
+  tankSprite: {fileID: 21300000, guid: ec6b8fdfc5cbed148b3094c8544f1996, type: 3}
+  knightSprite: {fileID: 21300000, guid: c058514a19ae5b044ac506f30fb11da1, type: 3}
+  ninjaSprite: {fileID: 21300000, guid: f7d7d1d3b12ee59409296986815a8650, type: 3}
+  tankScale: {x: 1, y: 1, z: 1}
+  knightScale: {x: 1, y: 1, z: 1}
+  ninjaScale: {x: 1, y: 1, z: 1}
 --- !u!1 &1557779091
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class FightSceneLoader : MonoBehaviour
 {
+    public RobotBodyVisual player1Visual;
+    public RobotBodyVisual player2Visual;
+
     public RobotSlots player1Slots;
     public RobotSlots player2Slots;
 
@@ -27,6 +30,9 @@ public class FightSceneLoader : MonoBehaviour
         // Apply body types onto configs
         player1Config.bodyType = GameSettings.Instance.p1BodyType;
         player2Config.bodyType = GameSettings.Instance.p2BodyType;
+
+        player1Visual.Apply();
+        player2Visual.Apply();
 
         // Apply physics stats + hearts
         player1Controller.ApplyCurrentBodyStats();
